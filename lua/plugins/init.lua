@@ -203,6 +203,9 @@ local plugins = {
       require("core.utils").load_mappings "whichkey"
     end,
   },
+  ["neoclide/coc.nvim"] = {
+    branch = "release"
+  },
 }
 
 -- Load all plugins
