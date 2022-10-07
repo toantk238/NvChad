@@ -203,10 +203,18 @@ local plugins = {
       require("core.utils").load_mappings "whichkey"
     end,
   },
+
   ["neoclide/coc.nvim"] = {
-    branch = "release"
+    branch = "release",
   },
 }
+
+local PythonPath = vim.env.PYENV_VIRTUAL_ENV
+PythonPath = PythonPath .. "/bin/python"
+vim.fn['coc#config']('python', {
+  pythonPath = PythonPath
+})
+
 
 -- Load all plugins
 local present, packer = pcall(require, "packer")
