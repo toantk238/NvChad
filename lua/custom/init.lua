@@ -41,3 +41,14 @@ autocmd("VimLeavePre", {
 })
 
 require "custom.commands"
+
+
+--local PythonPath = vim.env.PYENV_VIRTUAL_ENV
+--PythonPath = PythonPath .. "/bin/python"
+--vim.fn['coc#config']('python', {
+--  pythonPath = PythonPath
+--})
+
+vim.g.loaded_python3_provider = nil
+vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python_host_prog = '~/.pyenv/versions/2.7.18/bin/python'
