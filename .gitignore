@@ -1,5 +1,5 @@
 plugin
-custom
+lua/custom
 spell
 ftplugin
 coc-settings.json
