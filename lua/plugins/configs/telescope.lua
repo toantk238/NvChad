@@ -9,6 +9,8 @@ local options = {
       "--line-number",
       "--column",
       "--smart-case",
+      "-g",
+      "!{jquery,bootstrap,font-awesome,js}"
     },
     prompt_prefix = "   ",
     selection_caret = "  ",
