@@ -43,15 +43,15 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- new buffer
-    ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
+    -- ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
-    },
+    -- ["<leader>fm"] = {
+    --   function()
+    --     vim.lsp.buf.format { async = true }
+    --   end,
+    --   "LSP formatting",
+    -- },
   },
 
   t = {
@@ -241,6 +241,36 @@ M.lspconfig = {
       end,
       "List workspace folders",
     },
+
+    ["<leader>lr"] = {
+      "<cmd>LspRestart<CR>",
+      "Restart LSP",
+    },
+
+    ["<leader>fi"] = {
+      function()
+        local offset_encoding = vim.lsp.util._get_offset_encoding(0)
+        local params = vim.lsp.util.make_range_params(nil, offset_encoding)
+        params.context = { only = { "source.organizeImports" } }
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 500)
+        for _, res in pairs(result or {}) do
+          for _, r in pairs(res.result or {}) do
+            if r.edit then
+              vim.lsp.util.apply_workspace_edit(r.edit, offset_encoding)
+            else
+              vim.lsp.buf.execute_command(r.command)
+            end
+          end
+        end
+      end,
+      "Lsp organize imports",
+    },
+    ["<leader>fm"] = {
+      function()
+        require("conform").format()
+      end,
+      "format with conform",
+    },
   },
 
   v = {
@@ -261,7 +291,7 @@ M.nvimtree = {
     ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
 
     -- focus
-    ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    -- ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
   },
 }
 
