@@ -7,8 +7,13 @@ local default_plugins = {
   {
     "NvChad/base46",
     branch = "v3.0",
-    build = function()
+    -- build = function()
+    --   require("base46").load_all_highlights()
+    -- end,
+    lazy = false,
+    config = function()
       require("base46").load_all_highlights()
+      -- require("custom.utils.reload")()
     end,
   },
 
