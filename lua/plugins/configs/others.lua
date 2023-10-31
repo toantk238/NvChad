@@ -2,8 +2,14 @@ local M = {}
 local utils = require "core.utils"
 
 M.blankline = {
-  indent = { char = "│", highlight = "IblChar" },
-  scope = { char = "│", highlight = "IblScopeChar" },
+  indent = {
+    char = "│",
+    -- highlight = "IblChar",
+  },
+  scope = {
+    char = "│",
+    -- highlight = "IblScopeChar",
+  },
 }
 
 M.luasnip = function(opts)
