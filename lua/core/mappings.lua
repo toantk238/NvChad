@@ -265,12 +265,12 @@ M.lspconfig = {
       end,
       "Lsp organize imports",
     },
-    ["<leader>fm"] = {
-      function()
-        require("conform").format()
-      end,
-      "format with conform",
-    },
+    -- ["<leader>fm"] = {
+    --   function()
+    --     require("conform").format()
+    --   end,
+    --   "format with conform",
+    -- },
   },
 
   v = {
