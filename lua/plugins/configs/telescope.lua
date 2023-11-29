@@ -50,7 +50,11 @@ local options = {
       n = { ["q"] = require("telescope.actions").close },
     },
     -- preview = {
-    --   mime_hook = function(filepath, bufnr, opts)
+    --   filetype_hook = function(filepath, bufnr, opts)
+    --     local api = require "image"
+    --     local preview_id = "telescope_image_id"
+    --     api.clear(preview_id)
+    --
     --     local is_image = function(filepath)
     --       local image_extensions = { "png", "jpg", "jpeg", "gif" } -- Supported image formats
     --       local split_path = vim.split(filepath:lower(), ".", { plain = true })
@@ -58,23 +62,33 @@ local options = {
     --       return vim.tbl_contains(image_extensions, extension)
     --     end
     --     if is_image(filepath) then
-    --       local term = vim.api.nvim_open_term(bufnr, {})
-    --       local function send_output(_, data, _)
-    --         for _, d in ipairs(data) do
-    --           vim.api.nvim_chan_send(term, d .. "\r\n")
-    --         end
-    --       end
-    --       vim.fn.jobstart({
-    --         -- "viu", "-w", "80", "-b", filepath,
-    --         "kitty", "+kitten", "icat", filepath, -- Terminal image viewer command
-    --       }, {
-    --         on_stdout = send_output,
-    --         stdout_buffered = true,
-    --         pty = true,
+    --       local image = api.from_file(filepath, {
+    --         id = preview_id,
+    --         buffer = bufnr,
+    --         x = 110,
+    --         y = 20,
     --       })
+    --       if image ~= nil then
+    --         image:render()
+    --       end
+    --       -- local term = vim.api.nvim_open_term(bufnr, {})
+    --       -- local function send_output(_, data, _)
+    --       --   for _, d in ipairs(data) do
+    --       --     vim.api.nvim_chan_send(term, d .. "\r\n")
+    --       --   end
+    --       -- end
+    --       -- vim.fn.jobstart({
+    --       --   -- "viu", "-w", "80", "-b", filepath,
+    --       --   "kitty", "+kitten", "icat", filepath, -- Terminal image viewer command
+    --       -- }, {
+    --       --   on_stdout = send_output,
+    --       --   stdout_buffered = true,
+    --       --   pty = true,
+    --       -- })
     --     else
-    --       require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
+    --       return true
     --     end
+    --     return false
     --   end,
     -- },
   },
