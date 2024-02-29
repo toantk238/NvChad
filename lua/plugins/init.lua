@@ -28,7 +28,8 @@ local default_plugins = {
 
   {
     "NvChad/nvim-colorizer.lua",
-    event = "User FilePost",
+    -- event = "User FilePost",
+    lazy = false,
     config = function(_, opts)
       require("colorizer").setup(opts)
 
@@ -53,7 +54,8 @@ local default_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event = "User FilePost",
+    lazy = false,
+    -- event = "User FilePost",
     opts = function()
       return require("plugins.configs.others").blankline
     end,
@@ -85,7 +87,8 @@ local default_plugins = {
   -- git stuff
   {
     "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
+    -- event = "User FilePost",
+    lazy = false,
     opts = function()
       return require("plugins.configs.others").gitsigns
     end,
@@ -119,7 +122,8 @@ local default_plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    event = "User FilePost",
+    -- event = "User FilePost",
+    lazy = false,
     config = function()
       require("plugins.configs.lspconfig").defaults()
     end,
