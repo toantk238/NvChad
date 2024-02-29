@@ -28,9 +28,7 @@ local default_plugins = {
 
   {
     "NvChad/nvim-colorizer.lua",
-    init = function()
-      require("core.utils").lazy_load "nvim-colorizer.lua"
-    end,
+    event = "User FilePost",
     config = function(_, opts)
       require("colorizer").setup(opts)
 
@@ -55,9 +53,7 @@ local default_plugins = {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    init = function()
-      require("core.utils").lazy_load "indent-blankline.nvim"
-    end,
+    event = "User FilePost",
     opts = function()
       return require("plugins.configs.others").blankline
     end,
@@ -73,9 +69,7 @@ local default_plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    init = function()
-      require("core.utils").lazy_load "nvim-treesitter"
-    end,
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -91,27 +85,7 @@ local default_plugins = {
   -- git stuff
   {
     "lewis6991/gitsigns.nvim",
-    ft = { "gitcommit", "diff" },
-    init = function()
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-        callback = function()
-          vim.fn.jobstart({"git", "-C", vim.loop.cwd(), "rev-parse"},
-            {
-              on_exit = function(_, return_code)
-                if return_code == 0 then
-                  vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-                  vim.schedule(function()
-                    require("lazy").load { plugins = { "gitsigns.nvim" } }
-                  end)
-                end
-              end
-            }
-          )
-        end,
-      })
-    end,
+    event = "User FilePost",
     opts = function()
       return require("plugins.configs.others").gitsigns
     end,
@@ -145,9 +119,7 @@ local default_plugins = {
 
   {
     "neovim/nvim-lspconfig",
-    init = function()
-      require("core.utils").lazy_load "nvim-lspconfig"
-    end,
+    event = "User FilePost",
     config = function()
       require("plugins.configs.lspconfig").defaults()
     end,
