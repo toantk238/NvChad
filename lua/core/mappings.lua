@@ -80,7 +80,7 @@ map("n", "<leader>fw", function()
             "!{jquery,bootstrap,font-awesome,js}",
           },
         }
-      end,, { desc = "Telescope Live grep" })
+      end, { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
 

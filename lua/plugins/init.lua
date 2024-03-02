@@ -10,6 +10,9 @@ local default_plugins = {
     build = function()
       require("base46").load_all_highlights()
     end,
+    -- config = function ()
+    --   require("custom.utils.reload")()
+    -- end
   },
 
   {
@@ -53,7 +56,7 @@ local default_plugins = {
       indent = { char = "│", highlight = "IblChar" },
       scope = { char = "│", highlight = "IblScopeChar" },
     },
-    main = "ibl",
+    -- main = "ibl",
     lazy = false,
     -- event = "User FilePost",
     config = function(_, opts)
