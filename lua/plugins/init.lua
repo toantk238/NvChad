@@ -7,13 +7,8 @@ local default_plugins = {
   {
     "NvChad/base46",
     branch = "v3.0",
-    -- build = function()
-    --   require("base46").load_all_highlights()
-    -- end,
-    lazy = false,
-    config = function()
+    build = function()
       require("base46").load_all_highlights()
-      -- require("custom.utils.reload")()
     end,
   },
 
@@ -53,14 +48,15 @@ local default_plugins = {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    opts = {
+      indent = { char = "│", highlight = "IblChar" },
+      scope = { char = "│", highlight = "IblScopeChar" },
+    },
     main = "ibl",
     lazy = false,
     -- event = "User FilePost",
-    opts = function()
-      return require("plugins.configs.others").blankline
-    end,
     config = function(_, opts)
-      require("core.utils").load_mappings "blankline"
       dofile(vim.g.base46_cache .. "blankline")
 
       local hooks = require "ibl.hooks"
@@ -90,7 +86,7 @@ local default_plugins = {
     -- event = "User FilePost",
     lazy = false,
     opts = function()
-      return require("plugins.configs.others").gitsigns
+      return require "plugins.configs.gitsigns"
     end,
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "git")
@@ -140,7 +136,8 @@ local default_plugins = {
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
+          require("luasnip").config.set_config(opts)
+          require "plugins.configs.luasnip"
         end,
       },
 
@@ -188,7 +185,7 @@ local default_plugins = {
       { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
-      require("core.utils").load_mappings "comment"
+      vim.g.comment_maps = true
     end,
     config = function(_, opts)
       require("Comment").setup(opts)
@@ -199,9 +196,6 @@ local default_plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    init = function()
-      require("core.utils").load_mappings "nvimtree"
-    end,
     opts = function()
       return require "plugins.configs.nvimtree"
     end,
@@ -215,9 +209,6 @@ local default_plugins = {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
-    init = function()
-      require("core.utils").load_mappings "telescope"
-    end,
     opts = function()
       return require "plugins.configs.telescope"
     end,
@@ -237,9 +228,6 @@ local default_plugins = {
   {
     "folke/which-key.nvim",
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
-    init = function()
-      require("core.utils").load_mappings "whichkey"
-    end,
     cmd = "WhichKey",
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "whichkey")
