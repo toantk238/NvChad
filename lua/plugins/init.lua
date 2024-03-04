@@ -51,12 +51,12 @@ local default_plugins = {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
+    -- event = "User FilePost",
     opts = {
-      indent = { char = "│", highlight = "IblChar" },
-      scope = { char = "│", highlight = "IblScopeChar" },
+      -- indent = { char = "│", highlight = "IblChar" },
+      -- scope = { char = "│", highlight = "IblScopeChar" },
     },
-    -- main = "ibl",
+    main = "ibl",
     lazy = false,
     -- event = "User FilePost",
     config = function(_, opts)
