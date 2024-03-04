@@ -64,23 +64,23 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" }
 
 -- telescope
 map("n", "<leader>fw", function()
-        require("telescope.builtin").live_grep {
-          vimgrep_arguments = {
-            "rg",
-            "--hidden",
-            "--no-ignore",
-            "-L",
-            "--color=never",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-            "-g",
-            "!{jquery,bootstrap,font-awesome,js}",
-          },
-        }
-      end, { desc = "Telescope Live grep" })
+  require("telescope.builtin").live_grep {
+    vimgrep_arguments = {
+      "rg",
+      "--hidden",
+      "--no-ignore",
+      "-L",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "-g",
+      "!{jquery,bootstrap,font-awesome,js}",
+    },
+  }
+end, { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
 
@@ -90,7 +90,9 @@ map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
 map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope Nvchad themes" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
+map("n", "<leader>ff", function()
+  require("telescope.builtin").find_files { hidden = true }
+end, { desc = "Telescope Find files" })
 map(
   "n",
   "<leader>fa",
