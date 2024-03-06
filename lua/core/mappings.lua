@@ -54,7 +54,7 @@ end, { desc = "Comment Toggle" })
 map(
   "v",
   "<leader>/",
-  "<ESC>:lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
   { desc = "Comment Toggle" }
 )
 
