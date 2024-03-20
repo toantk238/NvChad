@@ -16,6 +16,22 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Lsp Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Lsp Remove workspace folder")
 
+  map("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "format with conform" })
+  map("n", "<leader>fi", function()
+    local offset_encoding = vim.lsp.util._get_offset_encoding(0)
+    local params = vim.lsp.util.make_range_params(nil, offset_encoding)
+    params.context = { only = { "source.organizeImports" } }
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 500)
+    for _, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          vim.lsp.util.apply_workspace_edit(r.edit, offset_encoding)
+        else
+          vim.lsp.buf.execute_command(r.command)
+        end
+      end
+    end
+  end, { desc = "Lsp organize imports" })
   map("n", "<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts "Lsp List workspace folders")
@@ -66,29 +82,29 @@ M.defaults = function()
   dofile(vim.g.base46_cache .. "lsp")
   require "nvchad.lsp"
 
-  require("lspconfig").lua_ls.setup {
-    on_attach = M.on_attach,
-    capabilities = M.capabilities,
-    on_init = M.on_init,
-
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim" },
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-            [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-            [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-            [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-          },
-          maxPreload = 100000,
-          preloadFileSize = 10000,
-        },
-      },
-    },
-  }
+  -- require("lspconfig").lua_ls.setup {
+  --   on_attach = M.on_attach,
+  --   capabilities = M.capabilities,
+  --   on_init = M.on_init,
+  --
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         globals = { "vim" },
+  --       },
+  --       workspace = {
+  --         library = {
+  --           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+  --           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+  --           [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+  --           [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+  --         },
+  --         maxPreload = 100000,
+  --         preloadFileSize = 10000,
+  --       },
+  --     },
+  --   },
+  -- }
 end
 
 return M
