@@ -69,6 +69,14 @@ return {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
+      vim.cmd [[
+        " :hi link NvimTreeSpecialFile NvimTreeNormal
+        :hi link NvimTreeExecFile Title
+        :hi link NvimTreeImageFile NvimTreeNormal
+        :hi link NvimTreeSpecialFile  NvimTreeNormal
+        :hi link NvimTreeSymlink       NvimTreeSpecialFile
+        " :hi NvimTreeSymlink guifg=red
+      ]]
     end,
   },
 
