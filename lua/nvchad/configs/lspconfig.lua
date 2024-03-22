@@ -16,7 +16,7 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Lsp Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Lsp Remove workspace folder")
 
-  map("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "format with conform" })
+  map("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
   map("n", "<leader>fi", function()
     local offset_encoding = vim.lsp.util._get_offset_encoding(0)
     local params = vim.lsp.util.make_range_params(nil, offset_encoding)
