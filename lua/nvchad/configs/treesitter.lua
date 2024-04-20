@@ -1,6 +1,8 @@
 local options = {
   ensure_installed = {
     "lua",
+    "luadoc",
+    "printf",
     "vim",
     "vimdoc",
     "html",
@@ -29,7 +31,6 @@ local options = {
     "markdown_inline",
     "hjson",
   },
-
   highlight = {
     enable = true,
     use_languagetree = true,

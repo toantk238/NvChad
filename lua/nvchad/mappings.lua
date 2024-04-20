@@ -75,7 +75,7 @@ map("n", "<leader>fw", function()
 end, { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
-
+map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope Find marks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
@@ -95,20 +95,20 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
 -- new terminals
 map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp", size = 0.3 }
+  require("nvchad.term").new { pos = "sp" }
 end, { desc = "Terminal New horizontal term" })
 
 map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp", size = 0.3 }
+  require("nvchad.term").new { pos = "vsp" }
 end, { desc = "Terminal New vertical window" })
 
 -- toggleable
 map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
+  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "Terminal Toggleable vertical term" })
 
 map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "Terminal New horizontal term" })
 
 map({ "n", "t" }, "<A-i>", function()
