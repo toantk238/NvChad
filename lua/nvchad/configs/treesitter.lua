@@ -30,6 +30,8 @@ local options = {
     "cmake",
     "markdown_inline",
     "hjson",
+    "dart",
+    "go"
   },
   highlight = {
     enable = true,
