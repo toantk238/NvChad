@@ -55,6 +55,7 @@ local options = {
     "autotools-language-server",
     "texlab",
     "latexindent",
+    "gopls"
   }, -- not an option from mason.nvim
 
   PATH = "skip",
