@@ -68,7 +68,7 @@ map("n", "<leader>fw", function()
   require("telescope.builtin").live_grep {
     vimgrep_arguments = {
       "rg",
-      "--hidden",
+      -- "--hidden",
       -- "--no-ignore",
       "-L",
       "--color=never",
@@ -92,12 +92,24 @@ map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git 
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
 map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope Nvchad themes" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
-map(
-  "n",
-  "<leader>fa",
-  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-  { desc = "telescope find all files" }
-)
+map("n", "<leader>fa", function()
+  require("telescope.builtin").live_grep {
+    vimgrep_arguments = {
+      "rg",
+      "--hidden",
+      "--no-ignore",
+      "-L",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "-g",
+      "!{jquery,bootstrap,font-awesome,js}",
+    },
+  }
+end, { desc = "Telescope Live grep in All" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
