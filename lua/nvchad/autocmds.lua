@@ -23,21 +23,10 @@ autocmd("BufWritePost", {
     require("plenary.reload").reload_module "nvconfig"
     require("plenary.reload").reload_module "chadrc"
     require("plenary.reload").reload_module "base46"
+    require("plenary.reload").reload_module "nvchad"
     require("plenary.reload").reload_module(module)
 
-    local config = require "nvconfig"
-
-    -- statusline
-    require("plenary.reload").reload_module "nvchad.stl.utils"
-    require("plenary.reload").reload_module("nvchad.stl." .. config.ui.statusline.theme)
-    vim.opt.statusline = "%!v:lua.require('nvchad.stl." .. config.ui.statusline.theme .. "')()"
-
-    -- tabufline
-    if config.ui.tabufline.enabled then
-      require("plenary.reload").reload_module "nvchad.tabufline.modules"
-      vim.opt.tabline = "%!v:lua.require('nvchad.tabufline.modules')()"
-    end
-
+    require("nvchad")
     require("base46").load_all_highlights()
     -- vim.cmd("redraw!")
   end,
@@ -48,7 +37,7 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
   group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
   callback = function(args)
     local file = vim.api.nvim_buf_get_name(args.buf)
-    local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
     if not vim.g.ui_entered and args.event == "UIEnter" then
       vim.g.ui_entered = true
@@ -64,7 +53,7 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
         if vim.g.editorconfig then
           require("editorconfig").config(args.buf)
         end
-      end, 0)
+      end)
     end
   end,
 })
