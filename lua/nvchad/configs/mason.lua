@@ -52,7 +52,7 @@ local options = {
     -- cmake
     "cmake-language-server",
     -- make file
-    "autotools-language-server",
+    -- "autotools-language-server",
     "texlab",
     "latexindent",
     "gopls"
