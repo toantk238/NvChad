@@ -54,7 +54,6 @@ return {
       return require "nvchad.configs.nvimtree"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "nvimtree")
       require("nvim-tree").setup(opts)
     end,
   },
@@ -93,7 +92,6 @@ return {
       return require "nvchad.configs.gitsigns"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
       require("gitsigns").setup(opts)
     end,
   },
@@ -106,27 +104,11 @@ return {
       return require "nvchad.configs.mason"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "mason")
       require("mason").setup(opts)
 
-      -- custom nvchad cmd to install all mason binaries listed
       vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed and #opts.ensure_installed > 0 then
-          vim.cmd "Mason"
-          local mr = require "mason-registry"
-
-          mr.refresh(function()
-            for _, tool in ipairs(opts.ensure_installed) do
-              local p = mr.get_package(tool)
-              if not p:is_installed() then
-                p:install()
-              end
-            end
-          end)
-        end
+        require("nvchad.mason").install_all(opts.ensure_installed)
       end, {})
-
-      vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
 
@@ -195,7 +177,6 @@ return {
       return require "nvchad.configs.telescope"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "telescope")
       local telescope = require "telescope"
       telescope.setup(opts)
 
@@ -229,8 +210,6 @@ return {
       return require "nvchad.configs.treesitter"
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      dofile(vim.g.base46_cache .. "treesitter")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
