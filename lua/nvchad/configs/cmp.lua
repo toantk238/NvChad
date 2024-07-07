@@ -103,7 +103,8 @@ local options = {
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "codeium" },
+    { name = "copilot" },
+    -- { name = "codeium" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
