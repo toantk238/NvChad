@@ -1,5 +1,6 @@
 dofile(vim.g.base46_cache .. "mason")
-local options = {
+
+return {
   PATH = "skip",
 
   ui = {
@@ -12,5 +13,3 @@ local options = {
 
   max_concurrent_installers = 10,
 }
-
-return options
