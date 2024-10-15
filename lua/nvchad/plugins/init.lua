@@ -173,9 +173,9 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    -- event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    ft = { "python", "kotlin", "javascript", "go", "typescript", "xml", "lua", "hurl", "markdown" },
+    -- ft = { "python", "kotlin", "javascript", "go", "typescript", "xml", "lua", "hurl", "markdown" },
     build = ":TSUpdate",
     opts = function()
       return require "nvchad.configs.treesitter"
