@@ -37,7 +37,8 @@ local options = {
     "hjson",
     "dart",
     "go",
-    "latex"
+    "latex",
+    "gn"
   },
   highlight = {
     enable = true,
