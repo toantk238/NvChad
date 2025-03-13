@@ -16,6 +16,14 @@ M.on_attach = function(_, bufnr)
 
   map("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
   map("n", "<leader>fi", function()
+    local clients = vim.lsp.get_clients { bufnr = 0 }
+    for _, client in ipairs(clients) do
+      if client.name == "pyright" then
+        vim.cmd "PyrightOrganizeImports"
+        return
+      end
+    end
+
     local offset_encoding = vim.lsp.util._get_offset_encoding(0)
     local params = vim.lsp.util.make_range_params(nil, offset_encoding)
     params.context = { only = { "source.organizeImports" } }
