@@ -47,7 +47,7 @@ local options = {
 
   sources = {
     { name = "nvim_lsp" },
-    { name = "copilot" },
+    -- { name = "copilot" },
     -- { name = "codeium" },
     { name = "luasnip" },
     { name = "buffer" },
