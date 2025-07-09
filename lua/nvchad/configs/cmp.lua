@@ -52,7 +52,7 @@ local options = {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
-    { name = "path" },
+    { name = "async_path" },
   },
 }
 
