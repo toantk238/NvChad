@@ -68,6 +68,12 @@ map("n", "<leader>fw", function()
       "--smart-case",
       "-g",
       "!{jquery,bootstrap,font-awesome,js}",
+      "-g",
+      "!DerivedData/",
+      "-g",
+      "!Localizable.strings",
+      "-g",
+      "!Generated/",
     },
   }
 end, { desc = "Telescope Live grep" })
