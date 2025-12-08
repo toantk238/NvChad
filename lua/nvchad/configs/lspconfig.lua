@@ -9,8 +9,8 @@ M.on_attach = function(_, bufnr)
 
   map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
   map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
-  map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
-  map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
+  -- map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
+  -- map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
 
   map("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
   map("n", "<leader>fi", function()
@@ -41,7 +41,7 @@ M.on_attach = function(_, bufnr)
   end, opts "List workspace folders")
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-  map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
+  -- map("n", "<leader>ra", vim.lsp.buf.rename, opts "NvRenamer")
 end
 
 -- disable semanticTokens
