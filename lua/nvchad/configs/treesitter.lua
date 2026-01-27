@@ -55,7 +55,6 @@ local options = {
       end
     end,
   },
-
   indent = { enable = true },
 }
 
