@@ -141,7 +141,7 @@ return {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-       "https://codeberg.org/FelipeLema/cmp-async-path.git",
+        "https://codeberg.org/FelipeLema/cmp-async-path.git",
       },
     },
     opts = function()
@@ -157,15 +157,30 @@ return {
       return require "nvchad.configs.telescope"
     end,
   },
-
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    -- ft = { "python", "kotlin", "javascript", "go", "typescript", "xml", "lua", "hurl", "markdown" },
-    build = ":TSUpdate | TSInstallAll",
+    branch = "main",
+    lazy = false,
+    build = function()
+      local ts = require "nvim-treesitter"
+      local spec = require("lazy.core.config").plugins["nvim-treesitter"]
+      local opts = type(spec.opts) == "table" and spec.opts or {}
+
+      if opts.install_dir then
+        ts.setup { install_dir = opts.install_dir }
+      end
+
+      if opts.ensure_installed then
+        ts.install(opts.ensure_installed, { summary = true }):wait(300000)
+      end
+
+      ts.update(nil, { summary = true }):wait(300000)
+    end,
     opts = function()
       return require "nvchad.configs.treesitter"
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter").setup { install_dir = opts.install_dir }
     end,
   },
 }
