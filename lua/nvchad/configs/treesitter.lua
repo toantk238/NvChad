@@ -4,6 +4,17 @@ pcall(function()
 end)
 
 local options = {
+  auto_install = true,
+  languages = {
+    smarty = {
+      install_info = {
+        url = "https://github.com/Kibadda/tree-sitter-smarty",
+        files = { "src/parser.c" },
+        branch = "main",
+        queries = "queries",
+      },
+    },
+  },
   ensure_installed = {
     "lua",
     "luadoc",
@@ -40,22 +51,6 @@ local options = {
     "latex",
     "gn",
   },
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-    disable = function(lang, buf)
-      local max_filesize = 1000 * 1024 -- 1000 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-      local lineCounts = vim.api.nvim_buf_line_count(buf)
-      if lineCounts > 3000 then
-        return true
-      end
-    end,
-  },
-  indent = { enable = true },
 }
 
 return options

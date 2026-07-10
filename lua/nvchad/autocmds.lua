@@ -33,11 +33,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local create_cmd = vim.api.nvim_create_user_command
+-- local create_cmd = vim.api.nvim_create_user_command
 
-create_cmd("TSInstallAll", function()
-  -- local spec = require("lazy.core.config").plugins["nvim-treesitter"]
-  local opts = require("nvchad.configs.treesitter")
-  -- local opts = type(spec.opts) == "table" and spec.opts or {}
-  require("nvim-treesitter").install(opts.ensure_installed)
-end, {})
+-- create_cmd("TSInstallAll", function()
+--   -- local spec = require("lazy.core.config").plugins["nvim-treesitter"]
+--   local opts = require("nvchad.configs.treesitter")
+--   -- local opts = type(spec.opts) == "table" and spec.opts or {}
+--   require("nvim-treesitter").install(opts.ensure_installed)
+-- end, {})
