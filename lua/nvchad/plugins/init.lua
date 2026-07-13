@@ -160,6 +160,7 @@ return {
   {
     "romus204/tree-sitter-manager.nvim",
     dependencies = {}, -- tree-sitter CLI must be installed system-wide
+    branch = "develop",
     lazy = false,
     opts = function()
       return require "nvchad.configs.treesitter"
