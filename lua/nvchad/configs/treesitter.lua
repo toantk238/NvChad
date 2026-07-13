@@ -50,6 +50,17 @@ local options = {
     "go",
     "latex",
     "gn",
+    "gomod",
+    "gosum",
+    "php",
+    "nginx",
+    "kitty",
+    "just",
+    "ini",
+    "http",
+    "powershell",
+    "smarty",
+    "zsh"
   },
 }
 
