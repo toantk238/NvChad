@@ -168,6 +168,10 @@ return {
     config = function(_, opts)
       require("tree-sitter-manager").setup(opts)
     end,
+    cond = function()
+      return (vim.fn.has "win32" == 0 and vim.fn.executable "gcc" == 1)
+        or (vim.fn.has "win32" == 1 and vim.fn.executable "cl.exe" == 1)
+    end,
   },
   {
     "monkoose/neocodeium",
