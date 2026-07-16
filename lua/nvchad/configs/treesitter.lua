@@ -60,7 +60,18 @@ local options = {
     "http",
     "powershell",
     "smarty",
-    "zsh"
+    "zsh",
+    "perl",
+    "ninja",
+    "meson",
+    "mermaid",
+    "groovy",
+    "gitignore",
+    "gitcommit",
+    "gitattributes",
+    "erlang",
+    "cpp",
+    "requirements"
   },
 }
 
