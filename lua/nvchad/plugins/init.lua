@@ -181,6 +181,7 @@ return {
       neocodeium.setup()
       vim.keymap.set("i", "<A-f>", neocodeium.accept)
     end,
+    cond = false
   },
   -- {
   --   "nvim-treesitter/nvim-treesitter",
