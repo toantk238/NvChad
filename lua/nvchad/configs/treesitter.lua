@@ -14,6 +14,14 @@ local options = {
         queries = "queries",
       },
     },
+    river = {
+      install_info = {
+        url = "https://github.com/grafana-cold-storage/tree-sitter-river",
+        files = { "src/parser.c" },
+        branch = "main",
+        queries = "queries",
+      },
+    },
   },
   ensure_installed = {
     "lua",
